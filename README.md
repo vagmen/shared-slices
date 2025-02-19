@@ -30,14 +30,14 @@ npm run dev
 ## Структура проекта
 
 /example # Демо-приложение для тестирования компонентов
-index.html
-index.tsx
-package.json
-tsconfig.json
+├── index.html
+├── index.tsx
+├── package.json
+└── tsconfig.json
 /src # Исходный код библиотеки
-index.tsx # Точка входа
+└── index.tsx # Точка входа
 /test # Тесты
-.test.tsx
+└── .test.tsx
 
 ## Скрипты
 
