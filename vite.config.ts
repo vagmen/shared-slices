@@ -12,7 +12,15 @@ export default defineConfig({
       fileName: () => "index.mjs",
     },
     rollupOptions: {
-      external: ["react", "react-dom", "react/jsx-runtime"],
+      external: [
+        "react",
+        "react-dom",
+        "react/jsx-runtime",
+        "@mui/material",
+        "@emotion/react",
+        "@emotion/styled",
+        "@mui/icons-material",
+      ],
       output: {
         globals: {
           react: "React",

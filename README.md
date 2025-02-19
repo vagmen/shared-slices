@@ -96,3 +96,26 @@ npm publish
 ## Лицензия
 
 MIT
+
+## Шрифты
+
+Компоненты используют шрифт Rubik. В Next.js проекте необходимо подключить шрифт одним из способов:
+
+1. Через Google Fonts в app/layout.tsx:
+
+```tsx
+import { Rubik } from 'next/font/google'
+
+const rubik = Rubik({ subsets: ['latin', 'cyrillic'] })
+```
+
+2. Через локальный шрифт:
+
+```tsx
+import localFont from 'next/font/local'
+
+const rubik = localFont({
+  src: './fonts/Rubik-Regular.ttf',
+  display: 'swap',
+})
+```
