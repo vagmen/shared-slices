@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import { ThemeProvider, Theme } from "@mui/material/styles";
 import { defaultUrmanTheme } from "./theme";

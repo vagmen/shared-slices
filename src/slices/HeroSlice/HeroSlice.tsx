@@ -1,3 +1,5 @@
+"use client";
+
 import * as React from "react";
 import { Box, Theme, SxProps, Typography, Button } from "@mui/material";
 import { Tag } from "../../components";
