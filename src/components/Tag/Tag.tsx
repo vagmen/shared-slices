@@ -14,14 +14,13 @@ export const Tag: React.FC<TagProps> = ({ text, emoji, sx }) => {
         display: "inline-flex",
         alignItems: "center",
         gap: 1,
-        bgcolor: (theme) => theme.palette.primary.main + "1A", // 10% прозрачности
-        color: "primary.main",
+        bgcolor: "rgba(var(--mui-palette-primary-mainChannel) / 0.1)", // 10% прозрачности от основного цвета #5C6933
         borderRadius: 4,
         px: 2,
         py: 1,
         transition: "all 0.2s ease-in-out",
         "&:hover": {
-          bgcolor: (theme) => theme.palette.primary.main + "33", // 20% прозрачности
+          bgcolor: "rgba(var(--mui-palette-primary-mainChannel) / 0.2)", // 20% прозрачности от основного цвета #5C6933
           transform: "translateY(-1px)",
         },
         ...sx,
@@ -43,6 +42,7 @@ export const Tag: React.FC<TagProps> = ({ text, emoji, sx }) => {
         sx={{
           fontWeight: 400,
           lineHeight: 1,
+          color: "primary.main",
         }}
       >
         {text}

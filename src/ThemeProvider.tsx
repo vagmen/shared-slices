@@ -1,5 +1,5 @@
 import React from "react";
-import { ThemeProvider as MuiThemeProvider, Theme } from "@mui/material";
+import { ThemeProvider, Theme } from "@mui/material/styles";
 import { defaultUrmanTheme } from "./theme";
 
 interface UrmanThemeProviderProps {
@@ -11,5 +11,5 @@ export const UrmanThemeProvider: React.FC<UrmanThemeProviderProps> = ({
   theme = defaultUrmanTheme,
   children,
 }) => {
-  return <MuiThemeProvider theme={theme}>{children}</MuiThemeProvider>;
+  return <ThemeProvider theme={theme}>{children}</ThemeProvider>;
 };

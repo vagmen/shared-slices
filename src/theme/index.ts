@@ -1,6 +1,8 @@
-import { createTheme, ThemeOptions } from "@mui/material";
+import { createTheme } from "@mui/material/styles";
+import { ThemeOptions } from "@mui/material";
 
-const baseThemeOptions: ThemeOptions = {
+const baseThemeOptions: ThemeOptions & { cssVariables: boolean } = {
+  cssVariables: true,
   palette: {
     primary: {
       main: "#5C6933",
@@ -58,7 +60,10 @@ export const createUrmanTheme = (customOptions?: ThemeOptions) => {
   return createTheme({
     ...baseThemeOptions,
     ...customOptions,
-    // Глубокое слияние пользовательских настроек с базовыми
+    components: {
+      ...baseThemeOptions.components,
+      ...customOptions?.components,
+    },
     palette: {
       ...baseThemeOptions.palette,
       ...customOptions?.palette,
@@ -67,7 +72,7 @@ export const createUrmanTheme = (customOptions?: ThemeOptions) => {
       ...baseThemeOptions.typography,
       ...customOptions?.typography,
     },
-  });
+  } as ThemeOptions);
 };
 
 export const defaultUrmanTheme = createUrmanTheme();

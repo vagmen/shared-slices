@@ -1,6 +1,6 @@
 {
   "name": "@urman/shared-slices",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "license": "MIT",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
@@ -9,7 +9,7 @@
     "src"
   ],
   "scripts": {
-    "build": "vite build",
+    "build": "NODE_ENV=production vite build --config vite.config.mts",
     "prepublishOnly": "npm run build",
     "test": "vitest run",
     "lint": "eslint src --ext ts,tsx",
