@@ -18,6 +18,30 @@ export const VideoSlice: React.FC<VideoSliceProps> = ({
   containerProps,
   maxWidth = "lg",
 }) => {
+  // Если URL пустой, не рендерим видео
+  if (!video) {
+    return null;
+  }
+
+  // Определяем тип видео
+  const isYouTube = video.includes("youtube.com") || video.includes("youtu.be");
+  const isVimeo = video.includes("vimeo.com");
+
+  // Получаем ID видео из YouTube URL
+  const getYouTubeVideoId = (url: string) => {
+    try {
+      if (url.includes("youtube.com")) {
+        const params = new URL(url).searchParams;
+        return params.get("v");
+      } else if (url.includes("youtu.be")) {
+        return url.split("/").pop();
+      }
+    } catch (e) {
+      console.error("Ошибка при парсинге YouTube URL:", e);
+    }
+    return null;
+  };
+
   return (
     <Container maxWidth={maxWidth}>
       <Box
@@ -31,22 +55,54 @@ export const VideoSlice: React.FC<VideoSliceProps> = ({
           ...sx,
         }}
       >
-        <Box
-          component="video"
-          controls
-          poster={poster}
-          sx={{
-            width: "100%",
-            height: "100%",
-            objectFit: "cover",
-            position: "absolute",
-            top: 0,
-            left: 0,
-          }}
-        >
-          <source src={video} type="video/mp4" />
-          Your browser does not support the video tag.
-        </Box>
+        {isYouTube ? (
+          <Box
+            component="iframe"
+            src={`https://www.youtube.com/embed/${getYouTubeVideoId(video)}`}
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+            sx={{
+              border: 0,
+              position: "absolute",
+              top: 0,
+              left: 0,
+              width: "100%",
+              height: "100%",
+            }}
+          />
+        ) : isVimeo ? (
+          <Box
+            component="iframe"
+            src={video.replace("vimeo.com", "player.vimeo.com/video")}
+            allow="autoplay; fullscreen"
+            allowFullScreen
+            sx={{
+              border: 0,
+              position: "absolute",
+              top: 0,
+              left: 0,
+              width: "100%",
+              height: "100%",
+            }}
+          />
+        ) : (
+          <Box
+            component="video"
+            controls
+            poster={poster}
+            sx={{
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              position: "absolute",
+              top: 0,
+              left: 0,
+            }}
+          >
+            <source src={video} type="video/mp4" />
+            Your browser does not support the video tag.
+          </Box>
+        )}
       </Box>
     </Container>
   );

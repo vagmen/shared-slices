@@ -56,6 +56,11 @@ const App = () => {
               poster="/images/about-poster.jpg"
               // maxWidth="md"
             />
+            <VideoSlice
+              video="https://youtu.be/Ul0jQzcTwTI?si=Y2XKmcZbQDVhE_LS"
+              // poster="/images/about-poster.jpg"
+              // maxWidth="md"
+            />
           </SliceDemo>
         </section>
 
