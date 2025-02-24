@@ -28,7 +28,14 @@ export const DocsLayout: React.FC<{ children: React.ReactNode }> = ({
   };
 
   return (
-    <Box sx={{ display: "flex", minHeight: "100vh" }}>
+    <Box
+      sx={{
+        display: "flex",
+        minHeight: "100vh",
+        width: "100%",
+        overflow: "hidden",
+      }}
+    >
       {/* Боковая панель */}
       <Box
         sx={{
@@ -79,7 +86,16 @@ export const DocsLayout: React.FC<{ children: React.ReactNode }> = ({
       </Box>
 
       {/* Основной контент */}
-      <Box sx={{ flexGrow: 1, ml: "250px", p: 3, backgroundColor: "#f5f5f5" }}>
+      <Box
+        sx={{
+          flexGrow: 1,
+          ml: "250px",
+          p: 3,
+          backgroundColor: "#f5f5f5",
+          overflowY: "auto",
+          overflowX: "hidden",
+        }}
+      >
         {children}
       </Box>
     </Box>

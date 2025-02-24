@@ -35,18 +35,47 @@ const baseThemeOptions: ThemeOptions & { cssVariables: boolean } = {
   typography: {
     fontFamily: '"Rubik", "Helvetica", "Arial", sans-serif',
     allVariants: {
-      color: "rgba(0, 0, 0, 0.87)", // стандартный цвет MUI
-      // или можно использовать более мягкий вариант
-      // color: '#2C2C2C', // темно-серый
+      color: "rgba(0, 0, 0, 0.87)",
     },
     h1: {
       fontWeight: 500,
+      fontSize: "2.5rem",
+      [`@media (min-width:600px)`]: {
+        fontSize: "3rem",
+      },
+      [`@media (min-width:900px)`]: {
+        fontSize: "3.5rem",
+      },
+      lineHeight: 1.2,
     },
     h2: {
       fontWeight: 500,
+      fontSize: "2rem",
+      [`@media (min-width:600px)`]: {
+        fontSize: "2.5rem",
+      },
+      [`@media (min-width:900px)`]: {
+        fontSize: "3rem",
+      },
+      lineHeight: 1.2,
+    },
+    h3: {
+      fontWeight: 500,
+      fontSize: "1.75rem",
+      lineHeight: 1.2,
     },
     h6: {
       fontWeight: 400,
+      fontSize: "1rem",
+      lineHeight: 1.5,
+    },
+    body1: {
+      fontSize: "1rem",
+      lineHeight: 1.5,
+    },
+    button: {
+      fontSize: "0.875rem",
+      fontWeight: 500,
     },
   },
 };

@@ -9,7 +9,7 @@ export interface TagProps {
   sx?: SxProps<Theme>;
 }
 
-export const Tag: React.FC<TagProps> = ({ text, emoji, sx }) => {
+const Tag: React.FC<TagProps> = ({ text, emoji, sx }) => {
   return (
     <Box
       sx={{
@@ -52,3 +52,5 @@ export const Tag: React.FC<TagProps> = ({ text, emoji, sx }) => {
     </Box>
   );
 };
+
+export default Tag;
