@@ -17,7 +17,7 @@ import Button from "../src/components/Button/Button";
 
 const theme = createUrmanTheme();
 
-const App = () => {
+export function App() {
   return (
     <UrmanThemeProvider theme={theme}>
       <CssBaseline />
@@ -215,11 +215,30 @@ const App = () => {
       </DocsLayout>
     </UrmanThemeProvider>
   );
-};
+}
 
-const root = createRoot(document.getElementById("root")!);
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+function renderApp() {
+  const rootElement = document.getElementById("root");
+  if (!rootElement) return;
+
+  // @ts-ignore - добавляем кастомное свойство для отслеживания
+  if (!rootElement._reactRoot) {
+    // @ts-ignore
+    rootElement._reactRoot = createRoot(rootElement);
+  }
+
+  // @ts-ignore
+  rootElement._reactRoot.render(
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
+  );
+}
+
+renderApp();
+
+if (import.meta.hot) {
+  import.meta.hot.accept(() => {
+    renderApp();
+  });
+}

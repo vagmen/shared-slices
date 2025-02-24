@@ -7,7 +7,9 @@ export interface ImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
   placeholder?: "blur" | "empty";
 }
 
-export const Image = (props: ImageProps) => {
+const Image = (props: ImageProps) => {
   const { fill, sizes, blurDataURL, placeholder, style, ...rest } = props;
   return <img {...rest} style={{ ...style, objectFit: "cover" }} />;
 };
+
+export default Image;

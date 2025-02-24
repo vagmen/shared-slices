@@ -1,2 +1,5 @@
-export { default as Tag } from "./Tag/Tag";
-export { default as HighlightedText } from "./HighlightedText/HighlightedText";
+export * from "./Button";
+export * from "./HeroContent";
+export * from "./Image";
+export * from "./HighlightedText";
+export * from "./Tag";

@@ -2,11 +2,11 @@
   "name": "@urman/shared-slices",
   "version": "0.5.0",
   "license": "MIT",
+  "main": "dist/index.mjs",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
   "files": [
-    "dist",
-    "src"
+    "dist"
   ],
   "scripts": {
     "build": "cross-env NODE_ENV=production vite build --config vite.config.mts",

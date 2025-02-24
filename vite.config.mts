@@ -7,7 +7,7 @@ export const config = defineConfig({
   plugins: [react(), dts({ include: ["src"] })],
   build: {
     lib: {
-      entry: resolve(__dirname, "src/index.tsx"),
+      entry: resolve(__dirname, "src/index.ts"),
       formats: ["es"],
       fileName: () => "index.mjs",
     },
