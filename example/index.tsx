@@ -37,9 +37,11 @@ export function App() {
                 {
                   text: "Заполнить анкету",
                   variant: "contained",
-                  onClick: () => {
-                    console.log("clicked");
-                  },
+                  // onClick: () => {
+                  //   console.log("clicked");
+                  // },
+                  href: "https://google.com",
+                  target: "_blank",
                 },
                 {
                   text: "Посмотреть вакансии",

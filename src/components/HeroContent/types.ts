@@ -9,6 +9,8 @@ export interface HeroContentProps {
     text: string;
     variant?: "text" | "contained" | "outlined" | "tonal" | "link";
     onClick?: () => void;
+    href?: string;
+    target?: string;
     // color?: "primary" | "secondary" | "inherit";
   }>;
   tags?: Array<{

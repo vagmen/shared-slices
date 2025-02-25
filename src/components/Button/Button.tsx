@@ -8,10 +8,13 @@ import {
   Theme,
 } from "@mui/material";
 import { alpha } from "@mui/material/styles";
+import { useUrmanComponents } from "../UrmanProvider/UrmanProvider";
 
 export interface ButtonProps extends Omit<MuiButtonProps, "variant"> {
   variant?: "text" | "contained" | "outlined" | "tonal" | "link";
   onClick?: () => void;
+  href?: string;
+  target?: string;
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -20,6 +23,8 @@ const Button: React.FC<ButtonProps> = ({
   sx,
   ...props
 }) => {
+  const { LinkComponent: ContextLinkComponent } = useUrmanComponents();
+
   const getStyles = (): SxProps<Theme> => ({
     textTransform: "none",
     fontWeight: 500,
@@ -47,7 +52,12 @@ const Button: React.FC<ButtonProps> = ({
     variant === "link" || variant === "tonal" ? "text" : variant;
 
   return (
-    <MuiButton {...props} variant={muiVariant} sx={getStyles()}>
+    <MuiButton
+      {...props}
+      variant={muiVariant}
+      sx={getStyles()}
+      {...(ContextLinkComponent ? { component: ContextLinkComponent } : {})}
+    >
       {children}
     </MuiButton>
   );

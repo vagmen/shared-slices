@@ -68,6 +68,8 @@ const HeroContent: React.FC<HeroContentProps> = ({
               key={index}
               variant={button.variant || "contained"}
               onClick={button.onClick}
+              href={button.href}
+              target={button.target}
               // color={button.color || "primary"}
             >
               {button.text}
