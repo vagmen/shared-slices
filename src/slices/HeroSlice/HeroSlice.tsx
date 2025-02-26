@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { Box } from "@mui/material";
+import { Box, Container } from "@mui/material";
 import HeroContent from "../../components/HeroContent/HeroContent";
 import { HeroSliceProps } from "./types";
 
@@ -19,11 +19,13 @@ const HeroSlice: React.FC<HeroSliceProps> = ({
         flexDirection: "column",
         alignItems: "center",
         py: 8,
-        px: 2,
+        // px: 2,
         ...sx,
       }}
     >
-      <HeroContent {...contentProps} centered={true} />
+      <Container maxWidth="lg">
+        <HeroContent {...contentProps} centered={true} />
+      </Container>
     </Box>
   );
 };
