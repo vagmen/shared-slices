@@ -56,7 +56,11 @@ const Button: React.FC<ButtonProps> = ({
       {...props}
       variant={muiVariant}
       sx={getStyles()}
-      {...(ContextLinkComponent ? { component: ContextLinkComponent } : {})}
+      {...(props.href && ContextLinkComponent
+        ? { component: ContextLinkComponent, href: props.href }
+        : ContextLinkComponent
+        ? { component: ContextLinkComponent }
+        : {})}
     >
       {children}
     </MuiButton>
