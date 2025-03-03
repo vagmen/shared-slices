@@ -58,8 +58,6 @@ const Button: React.FC<ButtonProps> = ({
       sx={getStyles()}
       {...(props.href && ContextLinkComponent
         ? { component: ContextLinkComponent, href: props.href }
-        : ContextLinkComponent
-        ? { component: ContextLinkComponent }
         : {})}
     >
       {children}
