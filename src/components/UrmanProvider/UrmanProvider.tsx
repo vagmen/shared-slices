@@ -11,9 +11,19 @@ interface UrmanProviderProps {
   components: UrmanComponents;
 }
 
-const UrmanContext = createContext<UrmanComponents>({});
+const defaultComponents: UrmanComponents = {
+  ImageComponent: "img",
+};
 
-export const useUrmanComponents = () => useContext(UrmanContext);
+const UrmanContext = createContext<UrmanComponents>(defaultComponents);
+
+export const useUrmanComponents = () => {
+  const context = useContext(UrmanContext);
+  return {
+    ...defaultComponents,
+    ...context,
+  } as Required<UrmanComponents>;
+};
 
 const UrmanProvider: React.FC<UrmanProviderProps> = ({
   children,

@@ -2,6 +2,7 @@ import * as React from "react";
 import { Box, Container } from "@mui/material";
 import HeroContent from "../../components/HeroContent/HeroContent";
 import { HeroWithImageSliceProps } from "./types";
+import { useUrmanComponents } from "../../components/UrmanProvider/UrmanProvider";
 
 const HeroWithImageSlice: React.FC<HeroWithImageSliceProps> = ({
   sx,
@@ -10,10 +11,13 @@ const HeroWithImageSlice: React.FC<HeroWithImageSliceProps> = ({
   image,
   imagePosition = "right",
   mobileImagePosition = "top",
-  ImageComponent = "img",
+  // ImageComponent = "img",
   imageComponentProps = {},
+  objectFit = "cover",
   ...contentProps
 }) => {
+  const { ImageComponent } = useUrmanComponents();
+
   const ImageBox = () => (
     <Box
       sx={{
@@ -48,7 +52,7 @@ const HeroWithImageSlice: React.FC<HeroWithImageSliceProps> = ({
             left: 0,
             width: "100%",
             height: "100%",
-            objectFit: "cover",
+            objectFit: objectFit,
           }}
           {...imageComponentProps}
         />

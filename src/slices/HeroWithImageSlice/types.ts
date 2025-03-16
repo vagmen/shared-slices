@@ -15,7 +15,8 @@ export interface HeroWithImageSliceProps extends Omit<HeroContentProps, "sx"> {
   };
   imagePosition?: "left" | "right";
   mobileImagePosition?: "top" | "bottom";
-  ImageComponent?: React.ElementType;
+  // ImageComponent?: React.ElementType;
   imageComponentProps?: Record<string, any>;
   maxWidth?: "xs" | "sm" | "md" | "lg" | "xl" | false;
+  objectFit?: "cover" | "contain" | "fill";
 }
