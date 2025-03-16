@@ -3,6 +3,7 @@ import { Box, Typography } from "@mui/material";
 import Tag from "../Tag/Tag";
 import { HeroContentProps } from "./types";
 import Button from "../Button/Button";
+import PriceDisplay from "../PriceDisplay/PriceDisplay";
 
 const HeroContent: React.FC<HeroContentProps> = ({
   sx,
@@ -12,7 +13,23 @@ const HeroContent: React.FC<HeroContentProps> = ({
   tags,
   titleVariant = "h2",
   centered = false,
+  priceOptions,
+  pricePosition = "above-buttons",
 }) => {
+  const renderPrice = () => {
+    if (!priceOptions) return null;
+    return (
+      <PriceDisplay
+        {...priceOptions}
+        sx={{
+          mb: pricePosition === "above-buttons" ? 3 : 0,
+          mt: pricePosition === "below-buttons" ? 3 : 0,
+          mx: { xs: "auto", md: centered ? "auto" : 0 },
+        }}
+      />
+    );
+  };
+
   return (
     <Box
       sx={{
@@ -21,6 +38,7 @@ const HeroContent: React.FC<HeroContentProps> = ({
         alignItems: centered ? "center" : "flex-start",
         textAlign: centered ? "center" : "left",
         ...sx,
+        gap: 2,
       }}
     >
       {tags && (
@@ -28,7 +46,7 @@ const HeroContent: React.FC<HeroContentProps> = ({
           sx={{
             display: "flex",
             gap: 2,
-            mb: 4,
+            // mb: 4,
             justifyContent: centered ? "center" : "flex-start",
           }}
         >
@@ -41,42 +59,47 @@ const HeroContent: React.FC<HeroContentProps> = ({
       <Typography
         variant={titleVariant}
         component={titleVariant}
-        sx={{ mb: 3, textWrap: "balance" }}
+        sx={{
+          // mb: 3,
+          textWrap: "balance",
+        }}
       >
         {title}
       </Typography>
 
-      <Typography
-        variant="body1"
-        sx={{
-          mb: 4,
-          maxWidth: 800,
-          textWrap: "balance",
-          fontSize: {
-            xs: "1.125rem", // 18px
-            sm: "1.25rem", // 20px
-          },
-        }}
-      >
-        {description}
-      </Typography>
+      {description && (
+        <Typography
+          variant="body1"
+          sx={{
+            mb: pricePosition === "above-buttons" && buttons ? 0 : 3,
+            color: "text.secondary",
+          }}
+        >
+          {description}
+        </Typography>
+      )}
+
+      {pricePosition === "above-buttons" && renderPrice()}
 
       {buttons && (
-        <Box sx={{ display: "flex", gap: 2 }}>
+        <Box
+          sx={{
+            display: "flex",
+            gap: 2,
+            // mt: 3,
+            flexWrap: "wrap",
+            justifyContent: centered ? "center" : "flex-start",
+          }}
+        >
           {buttons.map((button, index) => (
-            <Button
-              key={index}
-              variant={button.variant || "contained"}
-              onClick={button.onClick}
-              href={button.href}
-              target={button.target}
-              // color={button.color || "primary"}
-            >
+            <Button key={index} {...button}>
               {button.text}
             </Button>
           ))}
         </Box>
       )}
+
+      {pricePosition === "below-buttons" && renderPrice()}
     </Box>
   );
 };

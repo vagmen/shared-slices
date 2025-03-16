@@ -14,6 +14,8 @@ const HeroWithImageSlice: React.FC<HeroWithImageSliceProps> = ({
   // ImageComponent = "img",
   imageComponentProps = {},
   objectFit = "cover",
+  priceOptions,
+  pricePosition,
   ...contentProps
 }) => {
   const { ImageComponent } = useUrmanComponents();
@@ -83,6 +85,8 @@ const HeroWithImageSlice: React.FC<HeroWithImageSliceProps> = ({
             <HeroContent
               {...contentProps}
               centered={false}
+              priceOptions={priceOptions}
+              pricePosition={pricePosition}
               sx={{
                 textAlign: { xs: "center", md: "left" },
               }}

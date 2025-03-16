@@ -1,9 +1,19 @@
 import { HeroContentProps } from "../../components/HeroContent/types";
 import { Box, SxProps, Theme } from "@mui/material";
+import { PriceDisplayProps } from "../../components/PriceDisplay/PriceDisplay";
 
-export interface HeroWithImageSliceProps extends Omit<HeroContentProps, "sx"> {
-  sx?: SxProps<Theme>;
-  containerProps?: React.ComponentProps<typeof Box>;
+export interface PriceOptions {
+  price: number;
+  currency?: string;
+  prefix?: string;
+  suffix?: string;
+}
+
+export interface HeroWithImageSliceProps
+  extends Omit<HeroContentProps, "centered"> {
+  sx?: any;
+  containerProps?: any;
+  maxWidth?: "xs" | "sm" | "md" | "lg" | "xl" | false;
   image: {
     src: string;
     alt: string;
@@ -16,7 +26,8 @@ export interface HeroWithImageSliceProps extends Omit<HeroContentProps, "sx"> {
   imagePosition?: "left" | "right";
   mobileImagePosition?: "top" | "bottom";
   // ImageComponent?: React.ElementType;
-  imageComponentProps?: Record<string, any>;
-  maxWidth?: "xs" | "sm" | "md" | "lg" | "xl" | false;
-  objectFit?: "cover" | "contain" | "fill";
+  imageComponentProps?: any;
+  objectFit?: "cover" | "contain" | "fill" | "none" | "scale-down";
+  priceOptions?: PriceDisplayProps;
+  pricePosition?: "above-buttons" | "below-buttons";
 }

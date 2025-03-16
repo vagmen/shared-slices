@@ -1,4 +1,5 @@
 import { SxProps, Theme } from "@mui/material";
+import { PriceDisplayProps } from "../PriceDisplay/PriceDisplay";
 
 export interface HeroContentProps {
   sx?: SxProps<Theme>;
@@ -18,4 +19,6 @@ export interface HeroContentProps {
     text: string;
   }>;
   centered?: boolean;
+  priceOptions?: PriceDisplayProps;
+  pricePosition?: "above-buttons" | "below-buttons";
 }

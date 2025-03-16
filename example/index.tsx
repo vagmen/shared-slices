@@ -172,6 +172,29 @@ export function App() {
                 alt: "Удаленная работа в URMAN",
               }}
             />
+            <Divider>priceOptions</Divider>
+            <HeroWithImageSlice
+              title="Работай удаленно из любой точки России"
+              description="Мы за гибкий подход к работе. Команда URMAN работает по всей России: от Калининграда до Владивостока. Главное - результат и вовлеченность в общее дело."
+              priceOptions={{
+                price: 40600,
+                prefix: "от",
+                suffix: "в год",
+              }}
+              image={{
+                src: "https://prismic-main.cdn.prismic.io/prismic-main/ZxdVZ4F3NbkBXyz8_user-roles-hero-1-.svg?auto=compress%2Cformat&fit=max&w=1920",
+                alt: "Удаленная работа в URMAN",
+              }}
+              buttons={[
+                {
+                  text: "Узнать больше",
+                  variant: "contained",
+                  onClick: () => {
+                    console.log("clicked");
+                  },
+                },
+              ]}
+            />
           </SliceDemo>
         </section>
         <section id="video-slice">
