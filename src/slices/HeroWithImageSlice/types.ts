@@ -1,5 +1,4 @@
 import { HeroContentProps } from "../../components/HeroContent/types";
-import { Box, SxProps, Theme } from "@mui/material";
 import { PriceDisplayProps } from "../../components/PriceDisplay/PriceDisplay";
 
 export interface PriceOptions {
@@ -15,7 +14,7 @@ export interface HeroWithImageSliceProps
   containerProps?: any;
   maxWidth?: "xs" | "sm" | "md" | "lg" | "xl" | false;
   image: {
-    src: string;
+    src: string | null;
     alt: string;
     dimensions?: {
       width: number;
