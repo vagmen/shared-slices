@@ -16,6 +16,10 @@ const HeroWithImageSlice: React.FC<HeroWithImageSliceProps> = ({
   objectFit = "cover",
   priceOptions,
   pricePosition,
+  priceSize = "medium",
+  animatePrice = false,
+  animatePriceEffect = "count",
+  animatePriceDuration = 1500,
   ...contentProps
 }) => {
   const { ImageComponent } = useUrmanComponents();
@@ -85,7 +89,17 @@ const HeroWithImageSlice: React.FC<HeroWithImageSliceProps> = ({
             <HeroContent
               {...contentProps}
               centered={false}
-              priceOptions={priceOptions}
+              priceOptions={
+                priceOptions
+                  ? {
+                      ...priceOptions,
+                      size: priceSize,
+                      animate: animatePrice,
+                      animationEffect: animatePriceEffect,
+                      animationDuration: animatePriceDuration,
+                    }
+                  : undefined
+              }
               pricePosition={pricePosition}
               sx={{
                 textAlign: { xs: "center", md: "left" },

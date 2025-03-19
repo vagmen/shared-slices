@@ -29,4 +29,8 @@ export interface HeroWithImageSliceProps
   objectFit?: "cover" | "contain" | "fill" | "none" | "scale-down";
   priceOptions?: PriceDisplayProps;
   pricePosition?: "above-buttons" | "below-buttons";
+  priceSize?: "small" | "medium" | "large";
+  animatePrice?: boolean;
+  animatePriceEffect?: "count" | "fade" | "slide" | "bounce";
+  animatePriceDuration?: number;
 }
