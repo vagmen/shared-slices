@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Container, useTheme } from '@mui/material';
+import { Box, Container } from '@mui/material';
 import HeroContent from '../../components/HeroContent/HeroContent';
 import { HeroWithImageSliceProps } from './types';
 
@@ -7,7 +7,6 @@ const ImageBox: React.FC<{
   image: HeroWithImageSliceProps['image'];
   objectFit: HeroWithImageSliceProps['objectFit'];
 }> = ({ image, objectFit }) => {
-  const theme = useTheme();
 
   if (objectFit === 'contain') {
     return (
@@ -16,7 +15,7 @@ const ImageBox: React.FC<{
           position: 'relative',
           width: '100%',
           backgroundColor: 'grey.100',
-          borderRadius: theme.shape.borderRadius * 2,
+          borderRadius: 1,
           padding: 3,
           display: 'flex',
           alignItems: 'center',
@@ -55,7 +54,7 @@ const ImageBox: React.FC<{
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: 'grey.100',
-        borderRadius: theme.shape.borderRadius * 2,
+        borderRadius: 1,
       }}
     >
       <img

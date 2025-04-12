@@ -1,25 +1,17 @@
 "use client";
 
-import * as React from "react";
-import { Box, Theme, SxProps, Container } from "@mui/material";
+import React from 'react';
+import { Box, Container } from '@mui/material';
+import { VideoSliceProps } from './types';
 
-export interface VideoSliceProps {
-  video: string;
-  poster?: string;
-  sx?: SxProps<Theme>;
-  containerProps?: React.ComponentProps<typeof Box>;
-  maxWidth?: "xs" | "sm" | "md" | "lg" | "xl" | false;
-  my?: number;
-}
-
-const VideoSlice: React.FC<VideoSliceProps> = ({
+export default function VideoSlice({
   video,
   poster,
+  maxWidth = 'lg',
+  my = 4,
   sx,
   containerProps,
-  maxWidth = "lg",
-  my = 4,
-}) => {
+}: VideoSliceProps) {
   // Если URL пустой, не рендерим видео
   if (!video) {
     return null;
@@ -45,71 +37,65 @@ const VideoSlice: React.FC<VideoSliceProps> = ({
   };
 
   return (
-    <Box sx={{ my }}>
-      <Container maxWidth={maxWidth}>
-        <Box
-          {...containerProps}
-          sx={{
-            width: "100%",
-            position: "relative",
-            paddingTop: "56.25%", // Соотношение сторон 16:9
-            overflow: "hidden",
-            borderRadius: 6,
-            ...sx,
-          }}
-        >
-          {isYouTube ? (
-            <Box
-              component="iframe"
-              src={`https://www.youtube.com/embed/${getYouTubeVideoId(video)}`}
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-              sx={{
-                border: 0,
-                position: "absolute",
-                top: 0,
-                left: 0,
-                width: "100%",
-                height: "100%",
-              }}
-            />
-          ) : isVimeo ? (
-            <Box
-              component="iframe"
-              src={video.replace("vimeo.com", "player.vimeo.com/video")}
-              allow="autoplay; fullscreen"
-              allowFullScreen
-              sx={{
-                border: 0,
-                position: "absolute",
-                top: 0,
-                left: 0,
-                width: "100%",
-                height: "100%",
-              }}
-            />
-          ) : (
-            <Box
-              component="video"
-              controls
-              poster={poster}
-              sx={{
-                width: "100%",
-                height: "100%",
-                objectFit: "cover",
-                position: "absolute",
-                top: 0,
-                left: 0,
-              }}
-            >
-              <source src={video} type="video/mp4" />
-              Your browser does not support the video tag.
-            </Box>
-          )}
-        </Box>
-      </Container>
-    </Box>
+    <Container maxWidth={maxWidth} sx={{ my, ...sx }}>
+      <Box
+        sx={{
+          position: 'relative',
+          width: '100%',
+          paddingTop: '56.25%', // 16:9 Aspect Ratio
+          backgroundColor: 'grey.100',
+          borderRadius: 1,
+          overflow: 'hidden',
+          ...containerProps?.sx,
+        }}
+        {...containerProps}
+      >
+        {isYouTube ? (
+          <Box
+            component="iframe"
+            src={`https://www.youtube.com/embed/${getYouTubeVideoId(video)}`}
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+            sx={{
+              border: 0,
+              position: "absolute",
+              top: 0,
+              left: 0,
+              width: "100%",
+              height: "100%",
+            }}
+          />
+        ) : isVimeo ? (
+          <Box
+            component="iframe"
+            src={video.replace("vimeo.com", "player.vimeo.com/video")}
+            allow="autoplay; fullscreen"
+            allowFullScreen
+            sx={{
+              border: 0,
+              position: "absolute",
+              top: 0,
+              left: 0,
+              width: "100%",
+              height: "100%",
+            }}
+          />
+        ) : (
+          <video
+            src={video}
+            poster={poster}
+            controls
+            style={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+            }}
+          />
+        )}
+      </Box>
+    </Container>
   );
-};
-
-export default VideoSlice;
+}

@@ -15,13 +15,13 @@ const baseThemeOptions: ThemeOptions & { cssVariables: boolean } = {
     },
   },
   shape: {
-    borderRadius: borderRadius.medium,
+    borderRadius: 24,
   },
   components: {
     MuiButton: {
       styleOverrides: {
         root: {
-          borderRadius: 24,
+          borderRadius: 32,
           padding: "12px 32px",
           fontSize: "0.875rem",
           fontWeight: 500,
@@ -34,20 +34,6 @@ const baseThemeOptions: ThemeOptions & { cssVariables: boolean } = {
         },
         contained: {
           boxShadow: "0 4px 10px rgba(63, 71, 34, 0.1)",
-        },
-      },
-    },
-    MuiCard: {
-      styleOverrides: {
-        root: {
-          borderRadius: borderRadius.medium,
-        },
-      },
-    },
-    MuiPaper: {
-      styleOverrides: {
-        root: {
-          borderRadius: borderRadius.medium,
         },
       },
     },

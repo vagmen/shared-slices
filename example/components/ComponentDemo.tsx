@@ -15,7 +15,7 @@ export const ComponentDemo: React.FC<ComponentDemoProps> = ({
       <Typography variant="h4" sx={{ mb: 3 }}>
         {title}
       </Typography>
-      <Paper sx={{ p: 4, borderRadius: 6, boxShadow: 0 }}>{children}</Paper>
+      <Paper sx={{ p: 4, boxShadow: 0 }}>{children}</Paper>
     </Box>
   );
 };

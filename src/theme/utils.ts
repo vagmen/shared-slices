@@ -15,3 +15,11 @@ export const getTonalColors = (theme: Theme) => {
     text: primaryColor,
   };
 };
+
+/**
+ * Преобразует значение borderRadius из темы в строку с пикселями
+ * @param theme Тема Material-UI
+ * @returns Строка с значением в пикселях
+ */
+export const getBorderRadius = (theme: Theme) =>
+  `${theme.shape.borderRadius}px`;

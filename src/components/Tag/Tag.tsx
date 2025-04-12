@@ -19,7 +19,7 @@ const Tag: React.FC<TagProps> = ({ text, emoji, clickable = false, sx }) => {
         alignItems: "center",
         gap: 1,
         bgcolor: (theme: Theme) => getTonalColors(theme).main,
-        borderRadius: (theme: Theme) => theme.customBorderRadius.small,
+        borderRadius: 1,
         px: 1.5,
         py: 0.75,
         transition: "all 0.2s ease-in-out",

@@ -104,18 +104,59 @@ MIT
 1. Через Google Fonts в app/layout.tsx:
 
 ```tsx
-import { Rubik } from 'next/font/google'
+import { Rubik } from "next/font/google";
 
-const rubik = Rubik({ subsets: ['latin', 'cyrillic'] })
+const rubik = Rubik({ subsets: ["latin", "cyrillic"] });
 ```
 
 2. Через локальный шрифт:
 
 ```tsx
-import localFont from 'next/font/local'
+import localFont from "next/font/local";
 
 const rubik = localFont({
-  src: './fonts/Rubik-Regular.ttf',
-  display: 'swap',
-})
+  src: "./fonts/Rubik-Regular.ttf",
+  display: "swap",
+});
 ```
+
+## Использование UrmanThemeProvider в других проектах
+
+`UrmanThemeProvider` можно использовать в других проектах для применения стилей из библиотеки и их переопределения:
+
+```tsx
+import { UrmanThemeProvider, createUrmanTheme } from "shared-slices";
+import { ThemeOptions } from "@mui/material/styles";
+
+// Создаем кастомную тему, переопределяя только нужные свойства
+const customThemeOptions: ThemeOptions = {
+  palette: {
+    primary: {
+      main: "#FF0000", // Переопределяем основной цвет
+    },
+  },
+  typography: {
+    fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif', // Переопределяем шрифт
+  },
+};
+
+// Создаем тему, объединяя стили библиотеки и кастомные стили
+const theme = createUrmanTheme(customThemeOptions);
+
+// Используем провайдер в корневом компоненте приложения
+function App() {
+  return (
+    <UrmanThemeProvider theme={theme}>
+      {/* Ваше приложение */}
+    </UrmanThemeProvider>
+  );
+}
+```
+
+При таком подходе:
+
+1. Сначала применяются стили из библиотеки
+2. Затем применяются стили из вашего проекта, переопределяя соответствующие свойства
+3. Для вложенных объектов (components, palette, typography, shape) используется глубокое слияние
+
+Это позволяет использовать все преимущества стилей библиотеки и при необходимости переопределять только нужные свойства.
