@@ -1,6 +1,6 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
-import { CssBaseline, Divider, Box, Stack } from "@mui/material";
+import { CssBaseline, Divider, Box, Stack, Typography } from "@mui/material";
 import {
   HeroSlice,
   UrmanThemeProvider,
@@ -38,9 +38,6 @@ export function App() {
                 {
                   text: "Заполнить анкету",
                   variant: "contained",
-                  // onClick: () => {
-                  //   console.log("clicked");
-                  // },
                   href: "https://google.com",
                   target: "_blank",
                 },
@@ -286,6 +283,37 @@ export function App() {
                 ]}
               />
             </Stack>
+            <Divider>imageFit="cover" (по умолчанию)</Divider>
+            <HeroWithImageSlice
+              title="Изображение с обрезкой"
+              description="В этом примере изображение заполняет весь контейнер, обрезая лишнее (objectFit='cover')"
+              image={{
+                src: "https://cdn.prod.website-files.com/646e63db3a42c618e0a9935c/67ca0681d11969f8481aaec4_Thumbnail%2065%20for%20Medium.png",
+                alt: "Пример изображения с обрезкой",
+              }}
+              objectFit="cover"
+            />
+            <Divider>imageFit="contain"</Divider>
+            <HeroWithImageSlice
+              title="Изображение без обрезки"
+              description="В этом примере изображение показывается полностью, сохраняя пропорции (objectFit='contain')"
+              image={{
+                src: "https://us1.discourse-cdn.com/flex020/uploads/cursor1/original/3X/6/0/60be8fcc778f86d72e5e3f37303d9cbda7fe9321.png",
+                alt: "Пример изображения без обрезки",
+              }}
+              objectFit="contain"
+            />
+            <Divider>imagePosition="left" с imageFit="contain"</Divider>
+            <HeroWithImageSlice
+              title="Изображение слева без обрезки"
+              description="Комбинация imagePosition='left' и objectFit='contain' позволяет показать изображение полностью слева"
+              image={{
+                src: "https://us1.discourse-cdn.com/flex020/uploads/cursor1/original/3X/6/0/60be8fcc778f86d72e5e3f37303d9cbda7fe9321.png",
+                alt: "Пример изображения слева без обрезки",
+              }}
+              imagePosition="left"
+              objectFit="contain"
+            />
           </SliceDemo>
         </section>
         <section id="video-slice">
@@ -300,19 +328,44 @@ export function App() {
             <Divider>video from youtube</Divider>
             <VideoSlice
               video="https://youtu.be/Ul0jQzcTwTI?si=Y2XKmcZbQDVhE_LS"
-              // poster="/images/about-poster.jpg"
-              // maxWidth="md"
+            // poster="/images/about-poster.jpg"
+            // maxWidth="md"
             />
           </SliceDemo>
         </section>
         <section id="button">
           <ComponentDemo title="Button">
-            <Box sx={{ display: "flex", gap: 1 }}>
-              <Button variant="contained">Contained Button</Button>
-              <Button variant="tonal">Tonal Button</Button>
-              <Button variant="outlined">Outlined Button</Button>
-              <Button variant="text">Text Button</Button>
-              <Button variant="link">Link Button</Button>
+            <Box sx={{ p: 4, bgcolor: "background.paper" }}>
+
+
+              <Divider>Варианты кнопок</Divider>
+              <Stack spacing={2} direction="row" flexWrap="wrap" gap={2}>
+                <Button variant="contained">Contained</Button>
+                <Button variant="outlined">Outlined</Button>
+                <Button variant="text">Text</Button>
+                <Button variant="tonal">Tonal</Button>
+                <Button variant="link">Link</Button>
+              </Stack>
+
+              <Divider>Размеры кнопок</Divider>
+              <Stack spacing={2} direction="row" flexWrap="wrap" gap={2} alignItems="center">
+                <Button variant="contained" size="small">Small</Button>
+                <Button variant="contained" size="medium">Medium</Button>
+                <Button variant="contained" size="large">Large</Button>
+              </Stack>
+
+              <Divider>Размеры для разных вариантов</Divider>
+              <Stack spacing={2} direction="row" flexWrap="wrap" gap={2} alignItems="center">
+                <Button variant="tonal" size="small">Small Tonal</Button>
+                <Button variant="tonal" size="medium">Medium Tonal</Button>
+                <Button variant="tonal" size="large">Large Tonal</Button>
+              </Stack>
+
+              <Stack spacing={2} direction="row" flexWrap="wrap" gap={2} alignItems="center" sx={{ mt: 2 }}>
+                <Button variant="outlined" size="small">Small Outlined</Button>
+                <Button variant="outlined" size="medium">Medium Outlined</Button>
+                <Button variant="outlined" size="large">Large Outlined</Button>
+              </Stack>
             </Box>
           </ComponentDemo>
         </section>

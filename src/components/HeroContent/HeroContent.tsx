@@ -15,12 +15,20 @@ const HeroContent: React.FC<HeroContentProps> = ({
   centered = false,
   priceOptions,
   pricePosition = "above-buttons",
+  priceSize = "medium",
+  animatePrice = false,
+  animatePriceEffect = "count",
+  animatePriceDuration = 1500,
 }) => {
   const renderPrice = () => {
     if (!priceOptions) return null;
     return (
       <PriceDisplay
         {...priceOptions}
+        size={priceSize}
+        animate={animatePrice}
+        animationEffect={animatePriceEffect}
+        animationDuration={animatePriceDuration}
         sx={{
           mb: pricePosition === "above-buttons" ? 3 : 0,
           mt: pricePosition === "below-buttons" ? 3 : 0,
@@ -73,6 +81,7 @@ const HeroContent: React.FC<HeroContentProps> = ({
           sx={{
             mb: pricePosition === "above-buttons" && buttons ? 0 : 3,
             color: "text.secondary",
+            textWrap: "balance",
           }}
         >
           {description}

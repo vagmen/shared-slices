@@ -12,8 +12,9 @@ const sections = {
     { id: "video-slice", title: "Video Slice" },
   ],
   components: [
-    { id: "tag", title: "Tag" },
+    { id: "button", title: "Button" },
     { id: "highlighted-text", title: "Highlighted Text" },
+    { id: "tag", title: "Tag" },
   ],
 };
 

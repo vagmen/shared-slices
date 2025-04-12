@@ -7,14 +7,15 @@ import {
   SxProps,
   Theme,
 } from "@mui/material";
-import { alpha } from "@mui/material/styles";
 import { useUrmanComponents } from "../UrmanProvider/UrmanProvider";
+import { getTonalColors } from "../../theme/utils";
 
 export interface ButtonProps extends Omit<MuiButtonProps, "variant"> {
   variant?: "text" | "contained" | "outlined" | "tonal" | "link";
   onClick?: () => void;
   href?: string;
   target?: string;
+  size?: "small" | "medium" | "large";
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -28,17 +29,34 @@ const Button: React.FC<ButtonProps> = ({
   const getStyles = (): SxProps<Theme> => ({
     textTransform: "none",
     fontWeight: 500,
-    padding: "10px 24px",
-    ...(variant === "tonal" && {
-      bgcolor: (theme: Theme) => alpha(theme.palette.primary.main, 0.12),
+    ...(props.size === "small" && {
+      padding: "6px 16px",
+      fontSize: "0.8125rem",
+    }),
+    ...(props.size === "medium" && {
+      padding: "10px 24px",
+      fontSize: "0.875rem",
+    }),
+    ...(props.size === "large" && {
+      padding: "14px 32px",
+      fontSize: "1rem",
+    }),
+    ...(variant === "contained" && {
+      color: "#fff",
       "&:hover": {
-        bgcolor: (theme: Theme) => alpha(theme.palette.primary.main, 0.2),
+        color: "#fff",
+      },
+    }),
+    ...(variant === "tonal" && {
+      bgcolor: (theme: Theme) => getTonalColors(theme).main,
+      color: (theme: Theme) => getTonalColors(theme).text,
+      "&:hover": {
+        bgcolor: (theme: Theme) => getTonalColors(theme).hover,
       },
     }),
     ...(variant === "link" && {
       p: "6px 8px",
       minWidth: "auto",
-
       textDecoration: "underline",
       "&:hover": {
         bgcolor: "transparent",

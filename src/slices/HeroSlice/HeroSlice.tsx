@@ -18,8 +18,7 @@ const HeroSlice: React.FC<HeroSliceProps> = ({
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        py: 8,
-        // px: 2,
+        py: 10,
         ...sx,
       }}
     >

@@ -1,25 +1,31 @@
-import { createTheme } from "@mui/material/styles";
-import { ThemeOptions } from "@mui/material";
+import { createTheme, ThemeOptions, alpha } from "@mui/material/styles";
+import { borderRadius } from "./borderRadius";
 
 const baseThemeOptions: ThemeOptions & { cssVariables: boolean } = {
   cssVariables: true,
+  customBorderRadius: borderRadius,
   palette: {
     primary: {
       main: "#5C6933",
+      light: alpha("#5C6933", 0.2),
+      contrastText: "#5C6933",
     },
     secondary: {
       main: "#66BB6A",
     },
   },
+  shape: {
+    borderRadius: borderRadius.medium,
+  },
   components: {
     MuiButton: {
       styleOverrides: {
         root: {
-          borderRadius: 100, // делаем кнопку округлой
-          padding: "12px 32px", // увеличиваем padding
+          borderRadius: 24,
+          padding: "12px 32px",
           fontSize: "0.875rem",
           fontWeight: 500,
-          textTransform: "none", // отключаем автоматический uppercase
+          textTransform: "none",
           transition: "all 0.2s ease-in-out",
           "&:hover": {
             transform: "translateY(-2px)",
@@ -28,6 +34,20 @@ const baseThemeOptions: ThemeOptions & { cssVariables: boolean } = {
         },
         contained: {
           boxShadow: "0 4px 10px rgba(63, 71, 34, 0.1)",
+        },
+      },
+    },
+    MuiCard: {
+      styleOverrides: {
+        root: {
+          borderRadius: borderRadius.medium,
+        },
+      },
+    },
+    MuiPaper: {
+      styleOverrides: {
+        root: {
+          borderRadius: borderRadius.medium,
         },
       },
     },
@@ -100,6 +120,10 @@ export const createUrmanTheme = (customOptions?: ThemeOptions) => {
     typography: {
       ...baseThemeOptions.typography,
       ...customOptions?.typography,
+    },
+    shape: {
+      ...baseThemeOptions.shape,
+      ...customOptions?.shape,
     },
   } as ThemeOptions);
 };

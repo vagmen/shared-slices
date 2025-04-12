@@ -1,30 +1,35 @@
 "use client";
 
 import * as React from "react";
-import { Box, Typography, Theme, SxProps } from "@mui/material";
+import { Box, Typography, SxProps, Theme } from "@mui/material";
+import { getTonalColors } from "../../theme/utils";
 
 export interface TagProps {
   text: string;
   emoji?: string;
+  clickable?: boolean;
   sx?: SxProps<Theme>;
 }
 
-const Tag: React.FC<TagProps> = ({ text, emoji, sx }) => {
+const Tag: React.FC<TagProps> = ({ text, emoji, clickable = false, sx }) => {
   return (
     <Box
       sx={{
         display: "inline-flex",
         alignItems: "center",
         gap: 1,
-        bgcolor: "rgba(var(--mui-palette-primary-mainChannel) / 0.1)", // 10% прозрачности от основного цвета #5C6933
-        borderRadius: 4,
-        px: 2,
-        py: 1,
+        bgcolor: (theme: Theme) => getTonalColors(theme).main,
+        borderRadius: (theme: Theme) => theme.customBorderRadius.small,
+        px: 1.5,
+        py: 0.75,
         transition: "all 0.2s ease-in-out",
-        "&:hover": {
-          bgcolor: "rgba(var(--mui-palette-primary-mainChannel) / 0.2)", // 20% прозрачности от основного цвета #5C6933
-          transform: "translateY(-1px)",
-        },
+        ...(clickable && {
+          cursor: "pointer",
+          "&:hover": {
+            bgcolor: (theme: Theme) => getTonalColors(theme).hover,
+            transform: "translateY(-1px)",
+          },
+        }),
         ...sx,
       }}
     >
@@ -44,7 +49,7 @@ const Tag: React.FC<TagProps> = ({ text, emoji, sx }) => {
         sx={{
           fontWeight: 400,
           lineHeight: 1,
-          color: "primary.main",
+          color: (theme: Theme) => getTonalColors(theme).text,
         }}
       >
         {text}

@@ -1,6 +1,8 @@
 import * as React from "react";
 import { Box, Typography } from "@mui/material";
 import { useEffect, useState, useRef } from "react";
+import { getTonalColors } from "../../theme/utils";
+import { Theme } from "@mui/material/styles";
 
 export interface PriceDisplayProps {
   price: number;
@@ -59,8 +61,8 @@ const PriceDisplay: React.FC<PriceDisplayProps> = ({
       transition: "transform 0.3s ease",
       "&:hover": animate
         ? {
-            transform: "scale(1.05)",
-          }
+          transform: "scale(1.05)",
+        }
         : {},
     };
 
@@ -111,7 +113,7 @@ const PriceDisplay: React.FC<PriceDisplayProps> = ({
   const getNumberStyles = () => {
     const baseStyles = {
       fontWeight: "bold",
-      color: "primary.main",
+      color: (theme: Theme) => getTonalColors(theme).text,
       fontSize: fontSizes[size].price,
       letterSpacing: "-0.02em",
     };
@@ -166,58 +168,32 @@ const PriceDisplay: React.FC<PriceDisplayProps> = ({
     };
   }, [animate, hasAnimated]);
 
-  // Функция запуска анимации
+  // Функция для запуска анимации
   const startAnimation = () => {
     setIsAnimating(true);
+    if (animationEffect === "count") {
+      const startTime = Date.now();
+      const animate = () => {
+        const currentTime = Date.now();
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / animationDuration, 1);
 
-    // Если не нужно анимировать счетчик, просто устанавливаем конечное значение
-    if (animationEffect !== "count") {
+        setDisplayPrice(Math.floor(progress * price));
+
+        if (progress < 1) {
+          requestAnimationFrame(animate);
+        } else {
+          setIsAnimating(false);
+        }
+      };
+      requestAnimationFrame(animate);
+    } else {
+      // Для других эффектов просто показываем цену сразу
       setDisplayPrice(price);
-
-      // Сбрасываем состояние анимации через время
-      const timer = setTimeout(() => {
+      setTimeout(() => {
         setIsAnimating(false);
       }, animationDuration);
-
-      return () => clearTimeout(timer);
     }
-
-    // Сбрасываем на 0 перед анимацией
-    setDisplayPrice(0);
-
-    const startTime = Date.now();
-    const startValue = 0;
-    const endValue = price;
-
-    // Функция анимации с помощью requestAnimationFrame
-    const animatePrice = () => {
-      const currentTime = Date.now();
-      const elapsedTime = currentTime - startTime;
-
-      if (elapsedTime >= animationDuration) {
-        setDisplayPrice(endValue);
-        setIsAnimating(false);
-        return;
-      }
-
-      // Используем кубическую функцию плавности для более интересного эффекта
-      const progress = elapsedTime / animationDuration;
-      const easedProgress = easeOutCubic(progress);
-
-      const newValue = Math.round(
-        startValue + (endValue - startValue) * easedProgress
-      );
-      setDisplayPrice(newValue);
-
-      requestAnimationFrame(animatePrice);
-    };
-
-    requestAnimationFrame(animatePrice);
-  };
-
-  // Функция плавности для более естественной анимации
-  const easeOutCubic = (x: number): number => {
-    return 1 - Math.pow(1 - x, 3);
   };
 
   return (
@@ -227,7 +203,7 @@ const PriceDisplay: React.FC<PriceDisplayProps> = ({
         display: "flex",
         alignItems: "baseline",
         gap: 1,
-        backgroundColor: "rgba(92, 107, 52, 0.05)",
+        backgroundColor: (theme: Theme) => getTonalColors(theme).main,
         ...padding[size],
         borderRadius: 2,
         width: "fit-content",
@@ -254,7 +230,7 @@ const PriceDisplay: React.FC<PriceDisplayProps> = ({
           sx={{
             fontSize: "0.8em",
             fontWeight: "normal",
-            color: "primary.main",
+            color: (theme: Theme) => getTonalColors(theme).text,
             opacity: 0.9,
           }}
         >

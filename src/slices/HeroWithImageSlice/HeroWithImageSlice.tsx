@@ -1,115 +1,133 @@
-import * as React from "react";
-import { Box, Container } from "@mui/material";
-import HeroContent from "../../components/HeroContent/HeroContent";
-import { HeroWithImageSliceProps } from "./types";
-import { useUrmanComponents } from "../../components/UrmanProvider/UrmanProvider";
+import React from 'react';
+import { Box, Container, useTheme } from '@mui/material';
+import HeroContent from '../../components/HeroContent/HeroContent';
+import { HeroWithImageSliceProps } from './types';
 
-const HeroWithImageSlice: React.FC<HeroWithImageSliceProps> = ({
-  sx,
-  containerProps,
-  maxWidth = "lg",
-  image,
-  imagePosition = "right",
-  mobileImagePosition = "top",
-  // ImageComponent = "img",
-  imageComponentProps = {},
-  objectFit = "cover",
-  priceOptions,
-  pricePosition,
-  priceSize = "medium",
-  animatePrice = false,
-  animatePriceEffect = "count",
-  animatePriceDuration = 1500,
-  ...contentProps
-}) => {
-  const { ImageComponent } = useUrmanComponents();
+const ImageBox: React.FC<{
+  image: HeroWithImageSliceProps['image'];
+  objectFit: HeroWithImageSliceProps['objectFit'];
+}> = ({ image, objectFit }) => {
+  const theme = useTheme();
 
-  const ImageBox = () => (
-    <Box
-      sx={{
-        flex: 1,
-        width: "100%",
-        display: "flex",
-        justifyContent: "center",
-        order: {
-          xs: mobileImagePosition === "top" ? 0 : 2,
-          md: imagePosition === "left" ? 0 : 2,
-        },
-      }}
-    >
+  if (objectFit === 'contain') {
+    return (
       <Box
         sx={{
-          position: "relative",
-          width: "100%",
-          maxWidth: "600px",
-          aspectRatio: image.dimensions
-            ? `${image.dimensions.width} / ${image.dimensions.height}`
-            : "16 / 9",
-          borderRadius: 2,
-          overflow: "hidden",
+          position: 'relative',
+          width: '100%',
+          backgroundColor: 'grey.100',
+          borderRadius: theme.shape.borderRadius * 2,
+          padding: 3,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          overflow: 'visible',
         }}
       >
-        <ImageComponent
-          src={image.src}
+        <Box
+          component="img"
+          src={image.src || ''}
           alt={image.alt}
-          style={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            width: "100%",
-            height: "100%",
-            objectFit: objectFit,
+          sx={{
+            maxWidth: '100%',
+            maxHeight: { xs: '250px', sm: '300px', md: '400px' },
+            width: 'auto',
+            height: 'auto',
+            objectFit: 'contain',
           }}
-          {...imageComponentProps}
+          loading="lazy"
+          decoding="async"
         />
       </Box>
-    </Box>
-  );
+    );
+  }
 
   return (
     <Box
-      {...containerProps}
       sx={{
-        width: "100%",
-        py: 8,
-        ...sx,
+        position: 'relative',
+        width: '100%',
+        height: '100%',
+        minHeight: { xs: '200px', sm: '250px', md: '300px' },
+        maxHeight: { xs: '300px', sm: '400px', md: '500px' },
+        overflow: 'hidden',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: 'grey.100',
+        borderRadius: theme.shape.borderRadius * 2,
       }}
     >
-      <Container maxWidth={maxWidth}>
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: { xs: "column", md: "row" },
-            alignItems: "center",
-            gap: { xs: 4, md: 8 },
-          }}
-        >
-          <ImageBox />
-          <Box sx={{ flex: 1, width: "100%", order: 1 }}>
-            <HeroContent
-              {...contentProps}
-              centered={false}
-              priceOptions={
-                priceOptions
-                  ? {
-                      ...priceOptions,
-                      size: priceSize,
-                      animate: animatePrice,
-                      animationEffect: animatePriceEffect,
-                      animationDuration: animatePriceDuration,
-                    }
-                  : undefined
-              }
-              pricePosition={pricePosition}
-              sx={{
-                textAlign: { xs: "center", md: "left" },
-              }}
-            />
-          </Box>
-        </Box>
-      </Container>
+      <img
+        src={image.src || ''}
+        alt={image.alt}
+        style={{
+          width: '100%',
+          height: '100%',
+          objectFit: 'cover',
+          objectPosition: 'center',
+        }}
+        loading="lazy"
+        decoding="async"
+      />
     </Box>
   );
 };
 
-export default HeroWithImageSlice;
+export default function HeroWithImageSlice({
+  title,
+  description,
+  image,
+  maxWidth = 'lg',
+  imagePosition = 'right',
+  objectFit = 'cover',
+  titleVariant = 'h2',
+  buttons,
+  tags,
+  priceOptions,
+  priceSize = 'medium',
+  animatePrice = false,
+  animatePriceEffect = 'count',
+  animatePriceDuration = 1000,
+  mobileImagePosition = 'top',
+  ...rest
+}: HeroWithImageSliceProps) {
+  return (
+    <Container maxWidth={maxWidth}>
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: { xs: 'column', md: 'row' },
+          gap: 4,
+          py: 6,
+          alignItems: 'center',
+        }}
+      >
+        <Box sx={{ flex: 1, order: { xs: 2, md: imagePosition === 'left' ? 2 : 1 } }}>
+          <HeroContent
+            title={title}
+            description={description}
+            titleVariant={titleVariant}
+            buttons={buttons}
+            tags={tags}
+            priceOptions={priceOptions}
+            priceSize={priceSize}
+            animatePrice={animatePrice}
+            animatePriceEffect={animatePriceEffect}
+            animatePriceDuration={animatePriceDuration}
+            {...rest}
+          />
+        </Box>
+        <Box sx={{
+          flex: 1,
+          order: {
+            xs: mobileImagePosition === 'top' ? 1 : 2,
+            md: imagePosition === 'left' ? 1 : 2
+          }
+        }}>
+          <ImageBox image={image} objectFit={objectFit} />
+        </Box>
+      </Box>
+    </Container>
+  );
+}
