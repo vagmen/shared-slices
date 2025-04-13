@@ -93,6 +93,7 @@ export const DocsLayout: React.FC<{ children: React.ReactNode }> = ({
           ml: "250px",
           p: 3,
           backgroundColor: "#f5f5f5",
+          // backgroundColor: "#fff",
           overflowY: "auto",
           overflowX: "hidden",
         }}

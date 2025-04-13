@@ -5,6 +5,10 @@ const baseThemeOptions: ThemeOptions & { cssVariables: boolean } = {
   cssVariables: true,
   customBorderRadius: borderRadius,
   palette: {
+    background: {
+      default: "#FFFFFF", // Background
+      paper: "#F5F5F5", // Surface
+    },
     primary: {
       main: "#5C6933",
       light: alpha("#5C6933", 0.2),

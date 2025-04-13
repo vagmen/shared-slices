@@ -82,6 +82,9 @@ const HeroContent: React.FC<HeroContentProps> = ({
             mb: pricePosition === "above-buttons" && buttons ? 0 : 3,
             color: "text.secondary",
             textWrap: "balance",
+            fontSize: { xs: "1rem", md: "1.125rem" },
+            lineHeight: 1.6,
+            maxWidth: "65ch",
           }}
         >
           {description}
