@@ -41,6 +41,22 @@ const baseThemeOptions: ThemeOptions & { cssVariables: boolean } = {
         },
       },
     },
+    MuiTextField: {
+      styleOverrides: {
+        root: {
+          "& .MuiOutlinedInput-root": {
+            borderRadius: 8,
+          },
+        },
+      },
+    },
+    MuiInputBase: {
+      styleOverrides: {
+        root: {
+          borderRadius: 8,
+        },
+      },
+    },
   },
   typography: {
     fontFamily: '"Rubik", "Helvetica", "Arial", sans-serif',
