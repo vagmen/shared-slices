@@ -57,6 +57,29 @@ const baseThemeOptions: ThemeOptions & { cssVariables: boolean } = {
         },
       },
     },
+    MuiSelect: {
+      styleOverrides: {
+        root: {
+          borderRadius: 8,
+        },
+      },
+    },
+    MuiAutocomplete: {
+      styleOverrides: {
+        root: {
+          "& .MuiOutlinedInput-root": {
+            borderRadius: 8,
+          },
+        },
+      },
+    },
+    MuiOutlinedInput: {
+      styleOverrides: {
+        root: {
+          borderRadius: 8,
+        },
+      },
+    },
   },
   typography: {
     fontFamily: '"Rubik", "Helvetica", "Arial", sans-serif',
