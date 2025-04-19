@@ -347,6 +347,16 @@ export function App() {
                 <Button variant="link">Link</Button>
               </Stack>
 
+              <Divider>Цвета кнопок</Divider>
+              <Stack spacing={2} direction="row" flexWrap="wrap" gap={2} alignItems="center">
+                <Button variant="contained" color="primary">Primary</Button>
+                <Button variant="contained" color="secondary">Secondary</Button>
+                <Button variant="tonal" color="primary">Primary Tonal</Button>
+                <Button variant="tonal" color="secondary">Secondary Tonal</Button>
+                <Button variant="outlined" color="primary">Primary Outlined</Button>
+                <Button variant="outlined" color="secondary">Secondary Outlined</Button>
+              </Stack>
+
               <Divider>Размеры кнопок</Divider>
               <Stack spacing={2} direction="row" flexWrap="wrap" gap={2} alignItems="center">
                 <Button variant="contained" size="small">Small</Button>

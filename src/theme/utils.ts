@@ -2,17 +2,21 @@ import { Theme } from "@mui/material/styles";
 import { alpha } from "@mui/material/styles";
 
 /**
- * Получает тональные цвета на основе primary цвета темы
+ * Получает тональные цвета на основе primary или secondary цвета темы
  * @param theme Тема Material-UI
+ * @param key Ключ палитры ("primary" или "secondary")
  * @returns Объект с тональными цветами
  */
-export const getTonalColors = (theme: Theme) => {
-  const primaryColor = theme.palette.primary.main;
+export const getTonalColors = (
+  theme: Theme,
+  key: "primary" | "secondary" = "primary"
+) => {
+  const baseColor = theme.palette[key].main;
 
   return {
-    main: alpha(primaryColor, 0.12),
-    hover: alpha(primaryColor, 0.2),
-    text: primaryColor,
+    main: alpha(baseColor, 0.12),
+    hover: alpha(baseColor, 0.2),
+    text: baseColor,
   };
 };
 

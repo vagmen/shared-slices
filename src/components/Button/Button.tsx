@@ -26,6 +26,8 @@ const Button: React.FC<ButtonProps> = ({
 }) => {
   const { LinkComponent: ContextLinkComponent } = useUrmanComponents();
 
+  const colorKey = (props.color as 'primary' | 'secondary') || 'primary';
+
   const getStyles = (): SxProps<Theme> => ({
     textTransform: "none",
     fontWeight: 500,
@@ -48,10 +50,10 @@ const Button: React.FC<ButtonProps> = ({
       },
     }),
     ...(variant === "tonal" && {
-      bgcolor: (theme: Theme) => getTonalColors(theme).main,
-      color: (theme: Theme) => getTonalColors(theme).text,
+      bgcolor: (theme: Theme) => getTonalColors(theme, colorKey).main,
+      color: (theme: Theme) => getTonalColors(theme, colorKey).text,
       "&:hover": {
-        bgcolor: (theme: Theme) => getTonalColors(theme).hover,
+        bgcolor: (theme: Theme) => getTonalColors(theme, colorKey).hover,
       },
     }),
     ...(variant === "link" && {
