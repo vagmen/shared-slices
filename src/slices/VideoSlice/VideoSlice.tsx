@@ -1,7 +1,7 @@
 "use client";
 
 import React from 'react';
-import { Box, Container } from '@mui/material';
+import { Box, Container, Typography } from '@mui/material';
 import { VideoSliceProps } from './types';
 
 export default function VideoSlice({
@@ -11,6 +11,7 @@ export default function VideoSlice({
   my = 4,
   sx,
   containerProps,
+  caption,
 }: VideoSliceProps) {
   // Если URL пустой, не рендерим видео
   if (!video) {
@@ -38,6 +39,16 @@ export default function VideoSlice({
 
   return (
     <Container maxWidth={maxWidth} sx={{ my, ...sx }}>
+      {caption && (
+        <Typography
+          variant="h5"
+          component="p"
+          align="center"
+          sx={{ mb: 3, textWrap: "balance" }}
+        >
+          {caption}
+        </Typography>
+      )}
       <Box
         sx={{
           position: 'relative',

@@ -9,4 +9,5 @@ export interface VideoSliceProps {
   my?: number;
   sx?: SxProps<Theme>;
   containerProps?: ComponentProps<typeof Box>;
+  caption?: string;
 }

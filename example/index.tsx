@@ -337,8 +337,11 @@ export function App() {
             <Divider>video from youtube</Divider>
             <VideoSlice
               video="https://youtu.be/Ul0jQzcTwTI?si=Y2XKmcZbQDVhE_LS"
-            // poster="/images/about-poster.jpg"
-            // maxWidth="md"
+            />
+            <Divider>caption</Divider>
+            <VideoSlice
+              video="https://youtu.be/Ul0jQzcTwTI?si=Y2XKmcZbQDVhE_LS"
+              caption="Это видео о компании"
             />
           </SliceDemo>
         </section>
