@@ -16,7 +16,16 @@ import HighlightedText from "../src/components/HighlightedText/HighlightedText";
 import Button from "../src/components/Button/Button";
 import PriceDisplay from "../src/components/PriceDisplay/PriceDisplay";
 
-const theme = createUrmanTheme();
+const theme = createUrmanTheme({
+  palette: {
+    primary: {
+      main: "#5C6933",
+    },
+    secondary: {
+      main: "#D9734A",
+    },
+  },
+});
 
 export function App() {
   return (

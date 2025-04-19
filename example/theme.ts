@@ -7,7 +7,7 @@ export const createCustomTheme = (options?: ThemeOptions) =>
         main: "#5C6933",
       },
       secondary: {
-        main: "#4CAF50",
+        main: "#D9734A",
       },
     },
     typography: {

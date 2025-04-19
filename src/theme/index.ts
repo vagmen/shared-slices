@@ -11,8 +11,8 @@ const baseThemeOptions: ThemeOptions & { cssVariables: boolean } = {
     },
     primary: {
       main: "#5C6933",
-      light: alpha("#5C6933", 0.2),
-      contrastText: "#5C6933",
+      // light: alpha("#5C6933", 0.2),
+      // contrastText: "#5C6933",
     },
     secondary: {
       main: "#66BB6A",
